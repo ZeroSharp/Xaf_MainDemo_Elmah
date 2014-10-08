@@ -1,5 +1,4 @@
 #DropDB MainDemo
-#Application MainDemoWin
 #Application MainDemoWeb
 
 *FillForm

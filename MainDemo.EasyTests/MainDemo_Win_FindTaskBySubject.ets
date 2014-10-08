@@ -1,6 +1,4 @@
 #DropDB MainDemo
-#Application MainDemoWin
-#Application MainDemoWinRibbon
 
 *FillForm
  User Name = Sam

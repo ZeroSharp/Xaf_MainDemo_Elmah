@@ -15,6 +15,18 @@ using DevExpress.Web.ASPxClasses;
 using MainDemo.Module.BusinessObjects;
 
 namespace MainDemo.Web {
+
+    public class ElmahErrorHandling : ErrorHandling
+    {
+        protected override void LogException(ErrorInfo errorInfo)
+        {
+            base.LogException(errorInfo);
+
+            if (errorInfo.Exception != null)
+                Elmah.ErrorSignal.FromCurrentContext().Raise(errorInfo.Exception);
+        }
+    }
+
     public class Global : System.Web.HttpApplication {
         public Global() {
 #if DEBUG
@@ -23,6 +35,7 @@ namespace MainDemo.Web {
             InitializeComponent();
         }
         protected void Application_Start(object sender, EventArgs e) {
+            ErrorHandling.Instance = new ElmahErrorHandling();
             ASPxWebControl.CallbackError += new EventHandler(Application_Error);
 #if DEBUG
             TestScriptsManager.EasyTestEnabled = true;
